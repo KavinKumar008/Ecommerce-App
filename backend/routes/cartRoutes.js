@@ -4,7 +4,7 @@ import { CartItem } from "../models/CartItem.js";
 const router = express.Router();
 console.log(router, "kfjhfkh");
 
-router.post("/cart-items/add", async (req, res) => {
+router.post("/cart-items/addtocart", async (req, res) => {
   try {
     const productData = req.body;
 
@@ -21,7 +21,7 @@ router.post("/cart-items/add", async (req, res) => {
   }
 });
 
-router.get("/cart-details/getall", async (req, res) => {
+router.get("/cart-details/getallcartitems", async (req, res) => {
   try {
     const cartItems = await CartItem.find();
     res.status(200).json({ cartItems });
