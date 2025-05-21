@@ -12,7 +12,7 @@ export const ProductProvider = ({ children }) => {
   useEffect(() => {
     const getAllProducts = async () => {
       try {
-        const res = await axios.get(`${baseurl}/getall`);
+        const res = await axios.get(`${baseurl}/getallProducts`);
         if (res.status === 200) {
           setProducts(res.data.getAllProducts);
           console.log(res.data.getAllProducts);

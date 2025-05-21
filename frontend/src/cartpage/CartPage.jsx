@@ -51,7 +51,7 @@ const CartPage = () => {
   useEffect(() => {
     const getCartItems = async () => {
       try {
-        const res = await axios.get(`${baseurl}/cart-details/getall`);
+        const res = await axios.get(`${baseurl}/cart-details/getallcartitems`);
         if (res.status === 200) {
           setShowCartItems(res.data.cartItems);
           console.log(res.data.cartItems);
@@ -62,6 +62,8 @@ const CartPage = () => {
     };
     getCartItems();
   }, []);
+
+  console.log(showCartItems.length, "dmfnsdfn");
   return (
     <>
       <NavBar />

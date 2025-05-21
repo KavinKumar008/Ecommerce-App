@@ -10,7 +10,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = async (item) => {
     try {
-      const res = await axios.post(`${baseurl}/cart-items/add`, item);
+      const res = await axios.post(`${baseurl}/cart-items/addtocart`, item);
 
       if (res.status === 200) {
         toast.success("Item added to cart");
@@ -36,6 +36,7 @@ export const CartProvider = ({ children }) => {
   };
 
   console.log(addToCart, "addtocart");
+
   return (
     <cartContext.Provider value={{ cartItems, addToCart, setCartItems }}>
       {children}
