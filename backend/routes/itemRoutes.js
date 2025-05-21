@@ -1,0 +1,34 @@
+import express from "express";
+import { Product } from "../models/Product.js";
+
+const router = express.Router();
+
+// const app = express();
+
+router.get("/", (req, res) => {
+  res.send("hello from express");
+  console.log("hello from express");
+});
+
+router.post("/products/add", async (req, res) => {
+  try {
+    const products = req.body;
+    console.log(products);
+    await Product.insertMany(products);
+    res.status(200).json({ message: "Products added successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Error adding products" });
+  }
+});
+
+router.get("/getall", async (req, res) => {
+  try {
+    const getAllProducts = await Product.find();
+    console.log(getAllProducts);
+    res.status(200).json({ getAllProducts });
+  } catch (error) {
+    console.log("Failed to get all the data", error);
+  }
+});
+
+export default router;
