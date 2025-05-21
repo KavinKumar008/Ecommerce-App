@@ -24,11 +24,11 @@ export const ProductProvider = ({ children }) => {
     getAllProducts();
   }, []);
 
-  const filteringProducts = products.filter((item) =>
-    item?.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // const filteringProducts = products.filter((item) =>
+  //   item?.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
-  console.log(filteringProducts, "filterrinefweifjiofj");
+  // console.log(filteringProducts, "filterrinefweifjiofj");
   return (
     <ProductContext.Provider
       value={{ products, filteringProducts, searchTerm, setSearchTerm }}
