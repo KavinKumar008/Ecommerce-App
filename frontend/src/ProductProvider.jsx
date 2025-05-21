@@ -30,9 +30,7 @@ export const ProductProvider = ({ children }) => {
 
   // console.log(filteringProducts, "filterrinefweifjiofj");
   return (
-    <ProductContext.Provider
-      value={{ products, filteringProducts, searchTerm, setSearchTerm }}
-    >
+    <ProductContext.Provider value={{ products, searchTerm, setSearchTerm }}>
       {children}
     </ProductContext.Provider>
   );
