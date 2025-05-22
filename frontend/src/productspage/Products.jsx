@@ -15,8 +15,8 @@ const Products = () => {
   const navigate = useNavigate();
   const { products, filteringProducts } = useProducts();
 
-  // const baseurl = import.meta.env.VITE_API_URL;
-  // console.log(baseurl, "baseurllllll");
+  const baseurl = import.meta.env.VITE_API_URL;
+  console.log(baseurl, "baseurllllll");
 
   // const [products, setProducts] = useState([]);
 
@@ -74,20 +74,21 @@ const Products = () => {
       <section className="bg-white mt-5 ml-3 mr-3 shadow-md">
         <p className="p-4 lg:text-2xl text-xl font-bold">Best Of Electronics</p>
         <div className="lg:grid lg:grid-cols-3 gap-4 mt-5 grid grid-cols-1 md:grid md:grid-cols-2">
-          {electronicitems.map((item) => (
-            <div key={item._id} className="grid place-items-center mb-10">
-              <img
-                src={item.image}
-                alt="electronics"
-                className="transition-transform duration-100 ease-in-out transform hover:scale-105 rounded-lg w-[150px] h-[250px] cursor-pointer mb-5"
-                onClick={() =>
-                  handleSeparateItemDetails("electronic", item._id)
-                }
-              />
-              <p className="lg:truncate lg:w-64 truncate w-44">{item.name}</p>
-              <p className="text-xl font-bold">₹ {item.price}</p>
-            </div>
-          ))}
+          {electronicitems &&
+            electronicitems.map((item) => (
+              <div key={item._id} className="grid place-items-center mb-10">
+                <img
+                  src={item.image}
+                  alt="electronics"
+                  className="transition-transform duration-100 ease-in-out transform hover:scale-105 rounded-lg w-[150px] h-[250px] cursor-pointer mb-5"
+                  onClick={() =>
+                    handleSeparateItemDetails("electronic", item._id)
+                  }
+                />
+                <p className="lg:truncate lg:w-64 truncate w-44">{item.name}</p>
+                <p className="text-xl font-bold">₹ {item.price}</p>
+              </div>
+            ))}
         </div>
       </section>
       <section className="bg-white mt-5 ml-3 mr-3 shadow-md">

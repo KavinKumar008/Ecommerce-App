@@ -8,6 +8,7 @@ export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const baseurl = import.meta.env.VITE_API_URL;
+  console.log(baseurl);
 
   useEffect(() => {
     const getAllProducts = async () => {

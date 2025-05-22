@@ -25,7 +25,6 @@
 
 // export const SmartPhoneItem = [
 //   {
-//     id: 1,
 //     name: "SAMSUNG Galaxy S24 5G (Onyx Black, 256 GB)  (8 GB RAM)",
 //     image: samsung,
 //     changeImages: [samsungimg1, samsungimg2, samsungimg3],
@@ -37,7 +36,6 @@
 //     rating: 4.5,
 //   },
 //   {
-//     id: 2,
 //     name: "Motorola G85 5G (Olive Green, 128 GB)  (8 GB RAM)",
 //     image: motorola,
 //     price: 15999,
@@ -49,7 +47,6 @@
 //     rating: 4.4,
 //   },
 //   {
-//     id: 3,
 //     name: "Apple iPhone 13 (Starlight, 128 GB)",
 //     image: iphone,
 //     price: 44999,
@@ -61,7 +58,6 @@
 //     rating: 4.6,
 //   },
 //   {
-//     id: 4,
 //     name: "vivo T4x 5G (Pronto Purple, 128 GB)  (6 GB RAM)",
 //     image: vivo,
 //     price: 13999,
@@ -73,7 +69,6 @@
 //     rating: 4.5,
 //   },
 //   {
-//     id: 5,
 //     name: "OPPO K12x 5G with 45W SUPERVOOC Charger In-The-Box (Feather Pink, 128 GB)  (6 GB RAM)",
 //     image: oppo,
 //     price: 12999,
@@ -85,7 +80,6 @@
 //     rating: 4.5,
 //   },
 //   {
-//     id: 6,
 //     name: "realme P3x 5G (Lunar Silver, 128 GB)  (6 GB RAM)",
 //     image: realme,
 //     price: 12999,

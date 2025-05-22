@@ -25,7 +25,6 @@
 
 // export const ElectronicItem = [
 //   {
-//     id: 1,
 //     name: "OnePlus Nord Buds 3 Bluetooth (Chromatic Blue, True Wireless)",
 //     price: 1999,
 //     originalPrice: 2799,
@@ -37,7 +36,6 @@
 //     rating: 4.5,
 //   },
 //   {
-//     id: 2,
 //     name: "Egate Atom 2X (Ei9027) (200 lm) Android 13",
 //     price: 5990,
 //     originalPrice: 9990,
@@ -49,7 +47,6 @@
 //     rating: 3.5,
 //   },
 //   {
-//     id: 3,
 //     name: "ViewSonic XG2431 60.96 cm (24 inch) Full HD LED Backlit IPS Panel Gaming Monitor (1080p, AMD FreeSync Premium, 240Hz 0.5ms)  (AMD Free Sync, Response Time: 0.5 ms, 60 Hz Refresh Rate)",
 //     price: 21999,
 //     originalPrice: 35600,
@@ -61,7 +58,6 @@
 //     rating: 4.7,
 //   },
 //   {
-//     id: 4,
 //     name: "Fastrack Optimus2 Pro-1.43'' AMOLED|Advanced Blazing Fast UI|AOD|Metal Case|Working Crown Smartwatch  (Black Strap, Free Size)",
 //     price: 1499,
 //     originalPrice: 3999,
@@ -73,7 +69,6 @@
 //     rating: 4.2,
 //   },
 //   {
-//     id: 5,
 //     name: "SONY SRS-XB100 Portable Super-Compact,Waterproof, 16Hrs Batt, Extra Bass,Built-In Mic Bluetooth Speaker  (Blue, Stereo Channel)",
 //     price: 3499,
 //     originalPrice: 5990,
@@ -85,7 +80,6 @@
 //     rating: 3.8,
 //   },
 //   {
-//     id: 6,
 //     name: "Canon EOS R50 Mirrorless Camera RF - S 18 - 45 mm f/4.5 - 6.3 IS STM and RF - S 55 - 210 mm f/5 - 7.1 IS STM  (Black)",
 //     price: 87990,
 //     originalPrice: 97995,

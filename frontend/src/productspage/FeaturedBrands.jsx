@@ -9,7 +9,6 @@
 
 // export const FeaturedBrands = [
 //   {
-//     id: 1,
 //     name: "Stride Runner M Running Shoes For Men  (Blue , 8)",
 //     image: puma,
 //     price: 963,
@@ -20,7 +19,6 @@
 //     rating: 4.2,
 //   },
 //   {
-//     id: 2,
 //     name: "Medium Check-in Suitcase (65 cm) 8 Wheels - KEPLAR 65 - Black Special price",
 //     image: suitcase,
 //     price: 2249,
