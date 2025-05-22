@@ -24,10 +24,11 @@ router.post("/products/add", async (req, res) => {
 router.get("/getallProducts", async (req, res) => {
   try {
     const getAllProducts = await Product.find();
-    console.log(getAllProducts);
+    console.log(getAllProducts, "sjdnsdns");
     res.status(200).json({ getAllProducts });
   } catch (error) {
     console.log("Failed to get all the data", error);
+    res.status(400).json({ "Unable to get all products details": error });
   }
 });
 
