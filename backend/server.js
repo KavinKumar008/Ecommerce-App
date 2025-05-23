@@ -6,11 +6,17 @@ import routes from "./routes/itemRoutes.js";
 import authRoutes from "./routes/userRoutes.js";
 import signupRoutes from "./routes/signupRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
+import { fileURLToPath } from "url";
+import path from "path";
 
 dotenv.config();
 
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(cors());
 app.use(express.json());
 
