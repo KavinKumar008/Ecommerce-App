@@ -1,6 +1,7 @@
 import React, { Children, createContext, useContext, useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { useUserProfile } from "./UserProfileProvider";
 
 const ProductContext = createContext();
 
@@ -8,6 +9,7 @@ export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const baseurl = import.meta.env.VITE_API_URL;
+  const { isLoggedIn } = useUserProfile();
   console.log(baseurl);
 
   useEffect(() => {
@@ -22,8 +24,10 @@ export const ProductProvider = ({ children }) => {
         console.log(error);
       }
     };
-    getAllProducts();
-  }, []);
+    if (isLoggedIn) {
+      getAllProducts();
+    }
+  }, [isLoggedIn]);
 
   // const filteringProducts = products.filter((item) =>
   //   item?.name.toLowerCase().includes(searchTerm.toLowerCase())

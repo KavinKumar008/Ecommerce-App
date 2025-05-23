@@ -9,6 +9,7 @@ export const UserProfileProvider = ({ children }) => {
   const baseurl = import.meta.env.VITE_API_URL;
   const [authDetails, setAuthDetails] = useState("");
   const [signUpDetails, setSignUpDetails] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const validate = () => {
     let valid = true;
@@ -45,8 +46,9 @@ export const UserProfileProvider = ({ children }) => {
       console.log(res);
       if (res.status === 200) {
         setAuthDetails(res.data.user);
+        navigate("/products");
+        setIsLoggedIn(true);
       }
-      navigate("/products");
       localStorage.setItem("user", JSON.stringify(res.data.user));
     } catch (error) {
       console.log("Error during login :", error);
@@ -65,10 +67,11 @@ export const UserProfileProvider = ({ children }) => {
       console.log(signupRes);
       if (signupRes.status === 200) {
         setSignUpDetails(signupRes.data.data);
+        setIsLoggedIn(true);
+        navigate("/products");
       }
       setUserInput("");
       setUserPass("");
-      navigate("/products");
     } catch (error) {
       console.log("Error posting signup datas :", error);
     }
@@ -89,6 +92,7 @@ export const UserProfileProvider = ({ children }) => {
         authDetails,
         handleSubmit,
         signUpDetails,
+        isLoggedIn,
       }}
     >
       {children}
