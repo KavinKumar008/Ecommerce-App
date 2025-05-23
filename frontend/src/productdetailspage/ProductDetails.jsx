@@ -196,8 +196,8 @@ const ProductDetails = () => {
             </section>
           )}
           {product?.category === "featured" && (
-            <section className="p-8 lg:flex justify-around">
-              <div className="lg:w-[50%] w-full lg:p-5">
+            <section className="lg:p-8 p-5 lg:flex justify-around">
+              <div className="lg:w-[50%] lg:w-full lg:p-5">
                 <div className="flex gap-8 items-center">
                   <div className="flex flex-col gap-10">
                     {product.changeImages &&
