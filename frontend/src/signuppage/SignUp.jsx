@@ -40,6 +40,13 @@ const SignUp = () => {
     setEye((prev) => !prev);
   };
 
+  const handleCancel = (e) => {
+    e.preventDefault();
+    setUserInput("");
+    setUserPass("");
+    setErrors({ userInput: "", userPass: "" });
+  };
+
   // const validate = () => {
   //   let valid = true;
   //   const newErrors = { userInput: "", userPass: "" };
@@ -118,27 +125,28 @@ const SignUp = () => {
                   </p>
                 )}
               </label>
-              <label className="relative">
+              <label>
                 <p className="font-bold text-lg">Password</p>
-                <input
-                  type={eye ? "text" : "password"}
-                  placeholder="enter password"
-                  className="w-full p-3 border-2 border-gray-700 rounded-md outline-0"
-                  value={userPass || ""}
-                  onChange={(e) => handlePass(e.target.value)}
-                />
-                {eye ? (
-                  <IoIosEye
-                    className="absolute right-3 bottom-4 text-xl cursor-pointer"
-                    onClick={toggleEye}
+                <div className="relative">
+                  <input
+                    type={eye ? "text" : "password"}
+                    placeholder="enter password"
+                    className="w-full p-3 border-2 border-gray-700 rounded-md outline-0"
+                    value={userPass || ""}
+                    onChange={(e) => handlePass(e.target.value)}
                   />
-                ) : (
-                  <IoIosEyeOff
-                    className="absolute right-3 bottom-4 text-xl cursor-pointer"
-                    onClick={toggleEye}
-                  />
-                )}
-
+                  {eye ? (
+                    <IoIosEye
+                      className="absolute right-3 bottom-4 text-xl cursor-pointer"
+                      onClick={toggleEye}
+                    />
+                  ) : (
+                    <IoIosEyeOff
+                      className="absolute right-3 bottom-4 text-xl cursor-pointer"
+                      onClick={toggleEye}
+                    />
+                  )}
+                </div>
                 {errors.userPass && (
                   <p className="text-sm text-red-500 mt-2">{errors.userPass}</p>
                 )}
@@ -149,7 +157,10 @@ const SignUp = () => {
               </label>
             </div>
             <div className="flex justify-around p-2">
-              <button className="outline-0 bg-blue-400 p-3 w-[100px] rounded-md text-white font-bold cursor-pointer">
+              <button
+                className="outline-0 bg-blue-400 p-3 w-[100px] rounded-md text-white font-bold cursor-pointer"
+                onClick={(e) => handleCancel(e)}
+              >
                 Cancel
               </button>
               <button
