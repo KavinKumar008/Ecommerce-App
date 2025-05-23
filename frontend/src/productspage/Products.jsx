@@ -78,7 +78,7 @@ const Products = () => {
             electronicitems.map((item) => (
               <div key={item._id} className="grid place-items-center mb-10">
                 <img
-                  src={item.image}
+                  src={item.image || ""}
                   alt="electronics"
                   className="transition-transform duration-100 ease-in-out transform hover:scale-105 rounded-lg w-[150px] h-[250px] cursor-pointer mb-5"
                   onClick={() =>
@@ -99,7 +99,7 @@ const Products = () => {
           {smartphoneitems.map((mobile) => (
             <div key={mobile._id} className="grid place-items-center mb-10">
               <img
-                src={mobile.image}
+                src={mobile.image || ""}
                 alt="mobiles"
                 className="transition-transform duration-100 ease-in-out transform hover:scale-105 rounded-lg w-[150px] h-[250px] cursor-pointer mb-5"
                 onClick={() =>
@@ -118,7 +118,7 @@ const Products = () => {
           {featureditems.map((brand) => (
             <div className="grid place-items-center mb-10" key={brand._id}>
               <img
-                src={brand.image}
+                src={brand.image || ""}
                 alt="featuredbrands"
                 className="cursor-pointer"
                 onClick={() => handleSeparateItemDetails("featured", brand._id)}
