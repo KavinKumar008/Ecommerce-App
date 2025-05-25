@@ -24,10 +24,10 @@ export const ProductProvider = ({ children }) => {
         console.log(error);
       }
     };
-    if (isLoggedIn) {
-      getAllProducts();
-    }
-  }, [isLoggedIn]);
+    // if (isLoggedIn) {
+    // }
+    getAllProducts();
+  }, []);
 
   // const filteringProducts = products.filter((item) =>
   //   item?.name.toLowerCase().includes(searchTerm.toLowerCase())

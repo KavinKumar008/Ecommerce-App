@@ -47,7 +47,7 @@ export const UserProfileProvider = ({ children }) => {
       if (res.status === 200) {
         setAuthDetails(res.data.user);
         navigate("/products");
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
       }
       localStorage.setItem("user", JSON.stringify(res.data.user));
     } catch (error) {
@@ -67,7 +67,7 @@ export const UserProfileProvider = ({ children }) => {
       console.log(signupRes);
       if (signupRes.status === 200) {
         setSignUpDetails(signupRes.data.data);
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
         navigate("/products");
       }
       setUserInput("");
@@ -92,7 +92,6 @@ export const UserProfileProvider = ({ children }) => {
         authDetails,
         handleSubmit,
         signUpDetails,
-        isLoggedIn,
       }}
     >
       {children}

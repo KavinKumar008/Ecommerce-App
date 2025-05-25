@@ -20,7 +20,7 @@ const App = () => {
         />
         <Route path="/cartpage" element={<CartPage />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment/:category/:id" element={<Payment />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>
