@@ -8,6 +8,7 @@ import signupRoutes from "./routes/signupRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import { fileURLToPath } from "url";
 import path from "path";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use("/api", routes);
 app.use("/api", authRoutes);
 app.use("/api", signupRoutes);
 app.use("/api", cartRoutes);
+app.use("/api", paymentRoutes);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

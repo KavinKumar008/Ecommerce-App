@@ -8,6 +8,7 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 router.post("/auth/google", async (req, res) => {
   const { credential } = req.body;
+  console.log(credential, "credential");
 
   try {
     const ticket = await client.verifyIdToken({

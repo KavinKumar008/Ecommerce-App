@@ -2,7 +2,7 @@ import express from "express";
 import { CartItem } from "../models/CartItem.js";
 
 const router = express.Router();
-console.log(router, "kfjhfkh");
+// console.log(router, "kfjhfkh");
 
 router.post("/cart-items/addtocart", async (req, res) => {
   try {
