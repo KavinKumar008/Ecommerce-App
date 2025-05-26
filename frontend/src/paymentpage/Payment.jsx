@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import cameraimg1 from "../assets/cameraimgviews/cameraimg1.jpeg";
 import { useProducts } from "../ProductProvider";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Payment = () => {
   const { category, id } = useParams();
@@ -15,6 +16,9 @@ const Payment = () => {
     uPincode: "",
   });
 
+  const baseurl = import.meta.env.VITE_API_URL;
+  console.log(baseurl);
+
   console.log(category, "paramssss", id);
 
   const product = products.find((item) => {
@@ -24,6 +28,27 @@ const Payment = () => {
   console.log(paymentDetails);
   console.log(products, "products", product);
 
+  const handlePaymentApi = async () => {
+    try {
+      const res = await axios.post(`${baseurl}/payment`, {
+        paymentDetails,
+        product: {
+          image: product.image,
+          name: product.name,
+          subtotal: product.price,
+          discount: product.discount,
+          totalPrice: product.price,
+        },
+        category,
+      });
+
+      if (res.status === 200) {
+        console.log(res);
+      }
+    } catch (error) {
+      console.log("Error posting the payment details :", error);
+    }
+  };
   return (
     <main className="lg:flex lg:h-screen">
       <section className="lg:w-[50%] lg:pl-10 p-5 flex flex-col gap-5">
@@ -133,14 +158,19 @@ const Payment = () => {
       </section>
       <section className="lg:w-[50%]  p-5">
         <p className="text-2xl font-bold">Your Ordered Item</p>
-        <div className="mt-12 lg:h-[180px] xl:flex xl:gap-10 md:flex md:gap-20 h-auto p-4 rounded-md shadow-md">
+        <div className="mt-12 lg:h-[180px] xl:flex xl:gap-5 md:flex md:gap-20 h-auto p-4 rounded-md shadow-md">
           <div className="lg:flex lg:flex-col flex justify-around items-center">
             <img
               src={product?.image}
               alt="image"
-              className="h-[80px] w-[100px]  p-2"
+              className="h-[100px] w-[130px]  p-2"
             />
-            <p className="p-2 truncate w-[300px] text-sm">{product?.name}</p>
+            <p
+              className="p-2 truncate w-[400px] xl:w-[300px] text-sm"
+              title={product?.name}
+            >
+              {product?.name}
+            </p>
           </div>
           <div className="">
             <div className="mt-10 xl:mt-0 md:mt-0 flex flex-col gap-4 items-center">
@@ -171,7 +201,7 @@ const Payment = () => {
           </button>
           <button
             className="lg:w-[200px] border border-green-400 p-3 bg-green-400 text-white rounded-md cursor-pointer text-lg font-semibold"
-            onClick={() => console.log("clickedddd")}
+            onClick={handlePaymentApi}
           >
             Place Order
           </button>
