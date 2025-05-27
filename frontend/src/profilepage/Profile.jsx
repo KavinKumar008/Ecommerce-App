@@ -9,8 +9,8 @@ const Profile = () => {
     <>
       <NavBar />
       <div className="flex flex-col justify-center items-center h-screen lg:h-[500px] bg-gray-100">
-        <div className="w-[300px] h-[230px] bg-blue-200 rounded-md">
-          <p className="text-center p-3 font-bold text-xl">
+        <div className="flex flex-col justify-between xl:w-[450px] xl:h-[400px] md:w-[400px] md:h-[350px] w-[330px] h-[400px] bg-white rounded-md shadow-md">
+          <p className="text-center p-3 mt-6 font-bold text-2xl underline">
             Your Profile Information
           </p>
           {authDetails && (
@@ -25,15 +25,22 @@ const Profile = () => {
             </div>
           )}
           {signUpDetails && (
-            <div className="flex flex-col items-center justify-center gap-3">
-              <p className="font-semibold text-md">Your Email :</p>
-              <p className="text-amber-600">
-                {signUpDetails.email || signUpDetails.mobile}
-              </p>
-              <p className="font-semibold text-md">Your Password :</p>
-              <p className="text-amber-600">{signUpDetails.password}</p>
+            <div className="flex flex-col p-5 justify-center gap-3">
+              <div className="flex">
+                <p className="font-semibold text-md">Your Email :</p>
+                <p className="text-amber-600">
+                  {signUpDetails.email || signUpDetails.mobile}
+                </p>
+              </div>
+              <div className="flex">
+                <p className="font-semibold text-md">Your Password :</p>
+                <p className="text-amber-600">{signUpDetails.password}</p>
+              </div>
             </div>
           )}
+          <p className="flex justify-end items-end mr-10 p-2 cursor-pointer">
+            Logout
+          </p>
         </div>
       </div>
     </>
