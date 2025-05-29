@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 const UserContext = createContext();
@@ -10,6 +10,7 @@ export const UserProfileProvider = ({ children }) => {
   const [authDetails, setAuthDetails] = useState("");
   const [signUpDetails, setSignUpDetails] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [profileData, setProfileData] = useState("");
 
   const validate = () => {
     let valid = true;
@@ -67,6 +68,7 @@ export const UserProfileProvider = ({ children }) => {
       console.log(signupRes);
       if (signupRes.status === 200) {
         setSignUpDetails(signupRes.data.data);
+        localStorage.setItem("token", signupRes.data.token);
         // setIsLoggedIn(true);
         navigate("/products");
       }
@@ -76,6 +78,27 @@ export const UserProfileProvider = ({ children }) => {
       console.log("Error posting signup datas :", error);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log(token, "tokennnnnnnnn");
+    if (token) {
+      const profileInfo = async () => {
+        try {
+          const profileRes = await axios.get(`${baseurl}/profile`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (profileRes.status === 200) {
+            setProfileData(profileRes.data.data);
+            console.log(profileRes, "profileRes", profileRes.data.data);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      profileInfo();
+    }
+  }, []);
 
   console.log(authDetails);
   return (
@@ -92,6 +115,8 @@ export const UserProfileProvider = ({ children }) => {
         authDetails,
         handleSubmit,
         signUpDetails,
+        profileData,
+        setProfileData,
       }}
     >
       {children}

@@ -1,10 +1,19 @@
 import React from "react";
 import { useUserProfile } from "../UserProfileProvider";
 import NavBar from "../navbar/NavBar";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const { authDetails, signUpDetails } = useUserProfile();
-  console.log(authDetails, "skdhskdjhs", signUpDetails);
+  const { authDetails, signUpDetails, profileData, setProfileData } =
+    useUserProfile();
+  const navigate = useNavigate();
+  console.log(authDetails, "skdhskdjhs", signUpDetails, profileData);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setProfileData(null);
+    navigate("/");
+  };
   return (
     <>
       <NavBar />
@@ -24,23 +33,26 @@ const Profile = () => {
             <p>{authDetails.createdAt}</p> */}
             </div>
           )}
-          {signUpDetails && (
+          {profileData && (
             <div className="flex flex-col p-5 justify-center gap-3">
               <div className="flex">
                 <p className="font-semibold text-md">Your Email :</p>
                 <p className="text-amber-600">
-                  {signUpDetails.email || signUpDetails.mobile}
+                  {profileData.email || profileData.mobile}
                 </p>
               </div>
               <div className="flex">
-                <p className="font-semibold text-md">Your Password :</p>
-                <p className="text-amber-600">{signUpDetails.password}</p>
+                <p className="font-semibold text-md">Your Id :</p>
+                <p className="text-amber-600">{profileData._id}</p>
               </div>
             </div>
           )}
-          <p className="flex justify-end items-end mr-10 p-2 cursor-pointer">
+          <button
+            className="flex justify-end items-end mr-10 p-2 cursor-pointer"
+            onClick={handleLogout}
+          >
             Logout
-          </p>
+          </button>
         </div>
       </div>
     </>
