@@ -1,19 +1,36 @@
 import React from "react";
 import { useUserProfile } from "../UserProfileProvider";
 import NavBar from "../navbar/NavBar";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const { authDetails, signUpDetails, profileData, setProfileData } =
-    useUserProfile();
+  const { profileData, setProfileData } = useUserProfile();
   const navigate = useNavigate();
-  console.log(authDetails, "skdhskdjhs", signUpDetails, profileData);
+
+  console.log(profileData, "profiledataaaat");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("googleToken");
     setProfileData(null);
     // navigate("/");
   };
+
+  if (!profileData) {
+    return (
+      <>
+        <NavBar />
+        <div className="flex items-center justify-center h-screen">
+          <p className="text-gray-600 text-lg">
+            Please login to view your profile.
+          </p>
+        </div>
+      </>
+    );
+  }
+
+  const { name, email, _id, picture } = profileData;
+
   return (
     <>
       <NavBar />
@@ -22,46 +39,37 @@ const Profile = () => {
           <p className="text-center p-3 mt-6 font-bold text-2xl underline">
             Your Profile Information
           </p>
-          {authDetails && (
-            <div className="flex flex-col items-center gap-3">
-              <img
-                src={authDetails.picture}
-                alt="Profile Image"
-                className="rounded-full w-24 h-24 mt-3"
-              />
+
+          <div className="flex flex-col items-center gap-3">
+            <img
+              src={
+                picture ||
+                `https://ui-avatars.com/api/?name=${name}&background=random`
+              }
+              alt="Profile"
+              className="rounded-full w-24 h-24 mt-3"
+            />
+            <div className="flex">
               <p className="font-semibold text-md">Your name :</p>
-              <p className="text-amber-600">{authDetails.name}</p>
+              <p className="text-amber-600 ml-2">{name || "Not Provided"}</p>
+            </div>
+            <div className="flex">
               <p className="font-semibold text-md">Your email :</p>
-              <p className="text-amber-600">{authDetails.email}</p>
-              {/* <p>Created Time :</p>
-            <p>{authDetails.createdAt}</p> */}
+              <p className="text-amber-600 ml-2">{email}</p>
             </div>
-          )}
-          {profileData && (
-            <div className="flex flex-col p-5 justify-center gap-3">
-              <div className="flex">
-                <p className="font-semibold text-md">Your Email :</p>
-                <p className="text-amber-600">
-                  {profileData.email || profileData.mobile}
-                </p>
-              </div>
-              <div className="flex">
-                <p className="font-semibold text-md">Your Id :</p>
-                <p className="text-amber-600">{profileData._id}</p>
-              </div>
+            <div className="flex">
+              <p className="font-semibold text-md">Your ID :</p>
+              <p className="text-amber-600 ml-2">{_id}</p>
             </div>
-          )}
+          </div>
+
           <div className="flex justify-end items-end mr-10 p-2">
-            {profileData ? (
-              <button
-                onClick={handleLogout}
-                className="cursor-pointer text-red-500 hover:underline"
-              >
-                Logout
-              </button>
-            ) : (
-              <span className="text-gray-500">Login to see your profile</span>
-            )}
+            <button
+              onClick={handleLogout}
+              className="cursor-pointer text-red-500 hover:underline"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </div>

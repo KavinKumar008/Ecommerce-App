@@ -47,7 +47,7 @@ export const UserProfileProvider = ({ children }) => {
       console.log(res);
       if (res.status === 200) {
         setAuthDetails(res.data.user);
-        localStorage.setItem("googleToken", res.data.tooken);
+        localStorage.setItem("googleToken", res.data.token);
         navigate("/products");
         // setIsLoggedIn(true);
       }
