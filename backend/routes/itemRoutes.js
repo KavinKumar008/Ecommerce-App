@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
 router.post("/products/add", async (req, res) => {
   try {
     const products = req.body;
-    console.log(products);
+    // console.log(products);
     await Product.insertMany(products);
     res.status(200).json({ message: "Products added successfully" });
   } catch (error) {
@@ -24,7 +24,7 @@ router.post("/products/add", async (req, res) => {
 router.get("/getallProducts", async (req, res) => {
   try {
     const getAllProducts = await Product.find();
-    console.log(getAllProducts, "sjdnsdns");
+    // console.log(getAllProducts, "sjdnsdns");
     res.status(200).json({ getAllProducts });
   } catch (error) {
     console.log("Failed to get all the data", error);

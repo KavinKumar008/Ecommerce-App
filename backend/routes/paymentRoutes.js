@@ -14,6 +14,9 @@ router.post("/payment", async (req, res) => {
       category,
     });
 
+    if (!newPayment) {
+      res.status(400).json({ message: "Payment details are required" });
+    }
     await newPayment.save();
 
     res
