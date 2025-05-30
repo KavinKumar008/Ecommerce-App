@@ -130,7 +130,9 @@ router.get("/google-profile", verifyToken, async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.status(200).json({ message: "Google Profile Info", profileDetails });
+    res
+      .status(200)
+      .json({ message: "Google Profile Info", data: profileDetails });
   } catch (error) {
     console.log("Error getting google profile", error);
     res.status(400).json({ message: "Error getting google profile", error });
