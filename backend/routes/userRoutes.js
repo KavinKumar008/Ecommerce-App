@@ -124,9 +124,7 @@ router.get("/profile", verifyToken, async (req, res) => {
 
 router.get("/google-profile", verifyToken, async (req, res) => {
   try {
-    const profileDetails = await User.findById(req.query.userId).select(
-      "-password"
-    );
+    const profileDetails = await User.findById(req.userId).select("-password");
 
     if (!profileDetails) {
       return res.status(404).json({ message: "User not found" });
