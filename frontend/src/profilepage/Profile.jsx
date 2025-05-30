@@ -12,7 +12,7 @@ const Profile = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setProfileData(null);
-    navigate("/");
+    // navigate("/");
   };
   return (
     <>
@@ -24,7 +24,11 @@ const Profile = () => {
           </p>
           {authDetails && (
             <div className="flex flex-col items-center gap-3">
-              <img src={authDetails.picture} alt="Profile Image" />
+              <img
+                src={authDetails.picture}
+                alt="Profile Image"
+                className="rounded-full w-24 h-24 mt-3"
+              />
               <p className="font-semibold text-md">Your name :</p>
               <p className="text-amber-600">{authDetails.name}</p>
               <p className="font-semibold text-md">Your email :</p>
@@ -47,12 +51,18 @@ const Profile = () => {
               </div>
             </div>
           )}
-          <button
-            className="flex justify-end items-end mr-10 p-2 cursor-pointer"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
+          <div className="flex justify-end items-end mr-10 p-2">
+            {profileData ? (
+              <button
+                onClick={handleLogout}
+                className="cursor-pointer text-red-500 hover:underline"
+              >
+                Logout
+              </button>
+            ) : (
+              <span className="text-gray-500">Login to see your profile</span>
+            )}
+          </div>
         </div>
       </div>
     </>

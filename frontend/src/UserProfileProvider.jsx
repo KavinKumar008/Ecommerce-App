@@ -47,6 +47,7 @@ export const UserProfileProvider = ({ children }) => {
       console.log(res);
       if (res.status === 200) {
         setAuthDetails(res.data.user);
+        localStorage.setItem("googleToken", res.data.tooken);
         navigate("/products");
         // setIsLoggedIn(true);
       }
@@ -81,13 +82,21 @@ export const UserProfileProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token, "tokennnnnnnnn");
-    if (token) {
+    const googleToken = localStorage.getItem("googleToken");
+    console.log(token, "tokennnnnnnnn", googleToken);
+
+    if (token || googleToken) {
       const profileInfo = async () => {
         try {
-          const profileRes = await axios.get(`${baseurl}/profile`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
+          const url = token
+            ? `${baseurl}/profile`
+            : `${baseurl}/google-profile`;
+
+          const headers = token
+            ? { Authorization: `Bearer ${token}` }
+            : { Authorization: `Bearer ${googleToken}` };
+
+          const profileRes = await axios.get(url, { headers });
           if (profileRes.status === 200) {
             setProfileData(profileRes.data.data);
             console.log(profileRes, "profileRes", profileRes.data.data);
