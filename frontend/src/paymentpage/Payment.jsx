@@ -3,6 +3,7 @@ import cameraimg1 from "../assets/cameraimgviews/cameraimg1.jpeg";
 import { useProducts } from "../ProductProvider";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Payment = () => {
   const { category, id } = useParams();
@@ -28,7 +29,57 @@ const Payment = () => {
   console.log(paymentDetails);
   console.log(products, "products", product);
 
-  const handlePaymentApi = async () => {
+  const loadRazorParScript = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+  const handlePayment = async () => {
+    const res = await loadRazorParScript();
+    if (!res) {
+      toast.error("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+    const { data: order } = await axios.post(`${baseurl}/create-order`, {
+      amount: product.price * 100,
+    });
+    const options = {
+      key: "rzp_test_bwMRDnSLV4R3vI",
+      amount: product.price,
+      currency: "INR",
+      name: "E-commerce Payment",
+      description: "Payment for your order",
+      image: product.image,
+      order_id: order.id,
+      handler: function (response) {
+        const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
+          response;
+        console.log(
+          "Payment Success:",
+          razorpay_payment_id,
+          razorpay_order_id,
+          razorpay_signature
+        );
+        handlePaymentApi(response);
+        toast.success("Payment Successful!");
+      },
+      prefill: {
+        name: paymentDetails.uName,
+        mobile: paymentDetails.uMobileNO,
+        city: paymentDetails.uCity,
+      },
+      theme: { color: "3399cc" },
+    };
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+
+  const handlePaymentApi = async (response) => {
     try {
       const res = await axios.post(`${baseurl}/payment`, {
         paymentDetails,
@@ -38,6 +89,11 @@ const Payment = () => {
           subtotal: product.price,
           discount: product.discount,
           totalPrice: product.price,
+        },
+        razorpay: {
+          orderId: response.razorpay_order_id,
+          paymentId: response.razorpay_payment_id,
+          signature: response.razorpay_signature,
         },
         category,
       });
@@ -69,6 +125,7 @@ const Payment = () => {
                   [e.target.name]: e.target.value,
                 })
               }
+              required
             />
           </label>
           <label for="mobileno">
@@ -86,6 +143,7 @@ const Payment = () => {
                   [e.target.name]: e.target.value,
                 })
               }
+              required
             />
           </label>
           <label for="address">
@@ -102,6 +160,7 @@ const Payment = () => {
                   [e.target.name]: e.target.value,
                 })
               }
+              required
             />
           </label>
           <div className="lg:flex justify-between">
@@ -119,6 +178,7 @@ const Payment = () => {
                     [e.target.name]: e.target.value,
                   })
                 }
+                required
               />
             </label>
             <label for="state">
@@ -135,6 +195,7 @@ const Payment = () => {
                     [e.target.name]: e.target.value,
                   })
                 }
+                required
               />
             </label>
             <label for="pincode">
@@ -151,6 +212,7 @@ const Payment = () => {
                     [e.target.name]: e.target.value,
                   })
                 }
+                required
               />
             </label>
           </div>
@@ -201,7 +263,7 @@ const Payment = () => {
           </button>
           <button
             className="lg:w-[200px] border border-green-400 p-3 bg-green-400 text-white rounded-md cursor-pointer text-lg font-semibold"
-            onClick={handlePaymentApi}
+            onClick={handlePayment}
           >
             Place Order
           </button>
