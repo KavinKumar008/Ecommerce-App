@@ -20,6 +20,9 @@ const createToken = (userId) => {
 router.post("/auth/google", async (req, res) => {
   const { credential } = req.body;
 
+  console.log(credential, "credentialalalal");
+  console.log("Audience:", process.env.GOOGLE_CLIENT_ID);
+
   try {
     const ticket = await client.verifyIdToken({
       idToken: credential,
@@ -96,6 +99,14 @@ router.post("/signup-Details", async (req, res) => {
       data: userWithoutPass,
       token: token,
     });
+
+    console.log(
+      res.status(200).json({
+        message: "User registered",
+        data: userWithoutPass,
+        token: token,
+      })
+    );
   } catch (error) {
     console.log("signupdetails are not saved");
     res.status(401).json({ "Error Saving the userdetails": error });

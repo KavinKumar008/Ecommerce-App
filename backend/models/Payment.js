@@ -17,6 +17,11 @@ const paymentSchema = new mongoose.Schema({
     discount: String,
     totalPrice: Number,
   },
+  razorpay: {
+    orderId: String,
+    paymentId: String,
+    signature: String,
+  },
   category: {
     type: String,
     enum: ["electronic", "smartphone", "featured"],
