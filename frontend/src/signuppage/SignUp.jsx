@@ -101,10 +101,10 @@ const SignUp = () => {
 
   return (
     <main className="flex justify-center items-center h-screen">
-      <section className="border-2 border-gray-950 w-[500px] h-[530px] rounded-xl">
+      <section className="w-[500px] h-[530px] rounded-xl shadow-2xl">
         <section>
           <div>
-            <h1 className="text-center text-3xl font-bold mt-5">
+            <h1 className="text-center text-3xl font-bold mt-5 underline">
               Welcome To My App
             </h1>
           </div>
@@ -115,7 +115,7 @@ const SignUp = () => {
                 <input
                   type="text"
                   placeholder="enter email or mobile no"
-                  className="w-full p-3 border-2 border-gray-700 rounded-md outline-0"
+                  className="w-full p-3 border border-gray-200 rounded-md outline-0"
                   value={userInput || ""}
                   onChange={(e) => handleUserInput(e.target.value)}
                 />
@@ -131,7 +131,7 @@ const SignUp = () => {
                   <input
                     type={eye ? "text" : "password"}
                     placeholder="enter password"
-                    className="w-full p-3 border-2 border-gray-700 rounded-md outline-0"
+                    className="w-full p-3 border border-gray-200 rounded-md outline-0"
                     value={userPass || ""}
                     onChange={(e) => handlePass(e.target.value)}
                   />
@@ -158,14 +158,14 @@ const SignUp = () => {
             </div>
             <div className="flex justify-around p-2">
               <button
-                className="outline-0 bg-blue-400 p-3 w-[100px] rounded-md text-white font-bold cursor-pointer"
+                className="outline-0 bg-blue-400 p-3 w-[150px] rounded-md text-white font-bold cursor-pointer text-xl hover:bg-red-500"
                 onClick={(e) => handleCancel(e)}
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="outline-0 bg-blue-400 p-3 w-[100px] rounded-md text-white font-bold cursor-pointer"
+                className="outline-0 bg-blue-400 p-3 w-[150px] rounded-md text-white font-bold cursor-pointer text-xl"
               >
                 Sign Up
               </button>

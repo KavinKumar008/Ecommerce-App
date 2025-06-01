@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import brandlogo from "../assets/brandlogo.jpg";
+import brandlogo from "../assets/brandlogo.jpeg";
 import { FaHome } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
