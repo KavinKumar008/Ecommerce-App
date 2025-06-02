@@ -60,6 +60,8 @@ const ProductDetails = () => {
   const handleNavigatePayment = (category, id) => {
     navigate(`/payment/${category}/${id}`);
   };
+
+  // console.log(product.changeImages.map((item, i) => item.image));
   return (
     <>
       <NavBar />
@@ -72,8 +74,8 @@ const ProductDetails = () => {
               <div className="w-full lg:w-1/2 lg:p-5 sm:w-full sm:flex sm:flex-col">
                 <div className="lg:flex lg:gap-8 lg:items-center md:flex md:items-center md:justify-center flex gap-8 items-center">
                   <div className="flex flex-col gap-10">
-                    {electronicitems.changeImages &&
-                      electronicitems.changeImages.map((image, i) => (
+                    {product.changeImages &&
+                      product.changeImages.map((image, i) => (
                         <div key={i}>
                           <img
                             src={image}
@@ -144,8 +146,8 @@ const ProductDetails = () => {
               <div className="lg:w-[50%] w-full lg:p-5">
                 <div className="lg:flex lg:gap-8 lg:items-center md:flex md:items-center md:justify-center flex gap-8 items-center">
                   <div className="flex flex-col gap-10">
-                    {smartphoneitems.changeImages &&
-                      smartphoneitems.changeImages.map((image, i) => (
+                    {product.changeImages &&
+                      product.changeImages.map((image, i) => (
                         <div key={i}>
                           <img
                             src={image}
@@ -216,8 +218,8 @@ const ProductDetails = () => {
               <div className="lg:w-[50%] lg:w-full lg:p-5">
                 <div className="flex gap-8 items-center">
                   <div className="flex flex-col gap-10">
-                    {featureditems.changeImages &&
-                      featureditems.changeImages.map((image, i) => (
+                    {product.changeImages &&
+                      product.changeImages.map((image, i) => (
                         <div key={i}>
                           <img
                             src={image}

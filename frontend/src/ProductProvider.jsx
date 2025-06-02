@@ -34,6 +34,7 @@ export const ProductProvider = ({ children }) => {
   // );
 
   // console.log(filteringProducts, "filterrinefweifjiofj");
+
   return (
     <ProductContext.Provider value={{ products, searchTerm, setSearchTerm }}>
       {children}
