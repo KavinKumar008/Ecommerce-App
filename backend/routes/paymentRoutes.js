@@ -31,16 +31,40 @@ router.post("/create-order", async (req, res) => {
 router.post("/payment", async (req, res) => {
   try {
     const { paymentDetails, product, category, razorpay } = req.body;
+    const { uName, uMobileNO, uState, uCity, uAddress, uPincode } =
+      paymentDetails;
+
+    const nameRegex = /^[a-zA-Z][a-zA-Z\s]{1,49}$/;
+    const mobileRegex = /^[6-9]\d{9}$/;
+    const pincodeRegex = /^[1-9][0-9]{5}$/;
+    const cityStateRegex = /^[a-zA-Z\s]{2,}$/;
+    const addresRegex = /^[a-zA-Z0-9\s,.'-]{10,100}$/;
+
+    let errors = [];
+
+    if (!nameRegex.test(uName)) errors.push("Invalid name");
+    if (!mobileRegex.test(uMobileNO)) errors.push("Invalid Mobile Number");
+    if (!pincodeRegex.test(uPincode)) errors.push("Invalid Pincode");
+    if (!cityStateRegex.test(uCity)) errors.push("Invalid City");
+    if (!cityStateRegex.test(uState)) errors.push("Invalid State");
+    if (!addresRegex.test(uAddress)) errors.push("Invalid Address");
 
     const newPayment = new Payment({
-      paymentDetails,
+      paymentDetails: {
+        uName,
+        uMobileNO,
+        uAddress,
+        uCity,
+        uState,
+        uPincode,
+      },
       product,
       razorpay,
       category,
     });
 
-    if (!newPayment) {
-      res.status(400).json({ message: "Payment details are required" });
+    if (errors.length > 0) {
+      res.status(400).json({ message: "Validation failed", errors });
     }
     await newPayment.save();
 
