@@ -97,10 +97,7 @@ const CartPage = () => {
           showCartItems.map((item) => (
             <div
               key={item._id}
-              className="relative p-3 mb-2 sm:flex sm:flex-col xl:flex xl:flex-row xl:gap-96 xl:items-center md:flex md:flex-row md:items-center md:gap-60 rounded border-1 border-[#f0f0f0] shadow-md"
-              onClick={() =>
-                navigate(`/productdetails/${item?.category}/${item?._id}`)
-              }
+              className="relative p-3 mb-2 sm:flex sm:flex-col xl:flex xl:flex-row xl:gap-96 xl:items-center lg:flex lg:gap-68 md:flex md:flex-row md:items-center md:gap-34 rounded border-1 border-[#f0f0f0] shadow-md"
             >
               <div className="flex lg:gap-6 gap-4">
                 <div>
@@ -108,6 +105,9 @@ const CartPage = () => {
                     src={item.image}
                     alt="image"
                     className="w-[150px] h-[150px] p-5 cursor-pointer transition-transform duration-100 ease-in-out transform hover:scale-105 rounded-lg border border-[#f0f0f0] shadow-md"
+                    onClick={() =>
+                      navigate(`/productdetails/${item?.category}/${item?._id}`)
+                    }
                   />
                 </div>
                 <div className="flex flex-col gap-5 mt-10">
@@ -148,16 +148,21 @@ const CartPage = () => {
                       onClick={(e) => handlePlus(e, item._id)}
                     />
                   </div>
-                  <button className="border-1 border-red-300 hover:bg-[#fb641b] hover:transition-all  hover:duration-100 hover:ease-in-out hover:text-white p-3 rounded-xl text-lg font-semibold cursor-pointer">
+                  <button
+                    className="border-1 border-red-300 hover:bg-[#fb641b] hover:transition-all  hover:duration-100 hover:ease-in-out hover:text-white p-3 rounded-xl text-lg font-semibold cursor-pointer"
+                    onClick={() =>
+                      navigate(`/payment/${item?.category}/${item?._id}`)
+                    }
+                  >
                     Buy Now
                   </button>
                 </div>
-                <div
+                <button
                   className="absolute top-2 right-2"
                   onClick={() => handleRemoveItem(item._id)}
                 >
                   <MdCancel className="cursor-pointer text-xl" />
-                </div>
+                </button>
               </div>
             </div>
           ))
