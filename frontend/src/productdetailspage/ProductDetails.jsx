@@ -27,6 +27,16 @@ const ProductDetails = () => {
   });
   console.log(product, "skjsdkfdjkf");
 
+  const handleAddToCart = () => {
+    const itemToAdd = {
+      ...product,
+      category: product.category, // ✅ ensure this exists
+      quantity: 1,
+      totalPrice: product.price,
+    };
+    addToCart(itemToAdd);
+  };
+
   useEffect(() => {
     if (product?.category) {
       setSelectedImages(product.image);
@@ -97,7 +107,7 @@ const ProductDetails = () => {
                 <div className="flex gap-3 mt-8">
                   <button
                     className="w-[60%] flex gap-3 items-center justify-center cursor-pointer bg-[#ff9f00] text-white p-3 rounded-sm outline-none"
-                    onClick={() => addToCart(product)}
+                    onClick={handleAddToCart}
                   >
                     <FaShoppingCart />
                     <p>Add To Cart</p>
@@ -169,7 +179,7 @@ const ProductDetails = () => {
                 <div className="flex gap-3 lg:mt-8">
                   <button
                     className="w-[60%] flex gap-3 items-center justify-center cursor-pointer bg-[#ff9f00] text-white p-3 rounded-sm outline-none"
-                    onClick={() => addToCart(product)}
+                    onClick={handleAddToCart}
                   >
                     <FaShoppingCart />
                     <p>Add To Cart</p>
@@ -241,7 +251,7 @@ const ProductDetails = () => {
                 <div className="flex gap-3 mt-8">
                   <button
                     className="w-[60%] flex gap-3 items-center justify-center cursor-pointer bg-[#ff9f00] text-white p-3 rounded-sm outline-none"
-                    onClick={() => addToCart(product)}
+                    onClick={handleAddToCart}
                   >
                     <FaShoppingCart />
                     <p>Add To Cart</p>

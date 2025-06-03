@@ -85,7 +85,12 @@ const Products = () => {
                     handleSeparateItemDetails("electronic", item._id)
                   }
                 />
-                <p className="lg:truncate lg:w-64 truncate w-44">{item.name}</p>
+                <p
+                  className="lg:truncate lg:w-64 truncate w-44"
+                  title={item?.name || "No NAme Available"}
+                >
+                  {item.name}
+                </p>
                 <p className="text-xl font-bold">₹ {item.price}</p>
               </div>
             ))}
@@ -106,7 +111,12 @@ const Products = () => {
                   handleSeparateItemDetails("smartphone", mobile._id)
                 }
               />
-              <p className="truncate w-64">{mobile.name}</p>
+              <p
+                className="truncate w-64"
+                title={mobile?.name || "No Name Available"}
+              >
+                {mobile.name}
+              </p>
               <p className="text-xl font-bold">₹ {mobile.price}</p>
             </div>
           ))}
@@ -120,7 +130,7 @@ const Products = () => {
               <img
                 src={brand.image || ""}
                 alt="featuredbrands"
-                className="cursor-pointer"
+                className="cursor-pointer md:w-[300px] xl:w-[450px]"
                 onClick={() => handleSeparateItemDetails("featured", brand._id)}
               />
             </div>
