@@ -34,12 +34,11 @@ const Profile = () => {
   return (
     <>
       <NavBar />
-      <div className="flex flex-col justify-center items-center h-screen lg:h-[500px] bg-gray-100">
-        <div className="flex flex-col justify-between xl:w-[450px] xl:h-[400px] md:w-[400px] md:h-[350px] w-[330px] h-[400px] bg-white rounded-md shadow-md">
+      <div className="flex flex-col justify-center items-center h-screen lg:h-[500px] bg-gray-100  xl:h-screen lg:h-screen md:h-screen sm:h-screen">
+        <div className="flex flex-col justify-between xl:w-[450px] xl:h-[400px] md:w-[400px] md:h-[350px] w-[330px] h-[400px] bg-white rounded-md shadow-md xl:mt-10">
           <p className="text-center p-3 mt-6 font-bold text-2xl underline">
             Your Profile Information
           </p>
-
           <div className="flex flex-col items-center gap-3">
             <img
               src={

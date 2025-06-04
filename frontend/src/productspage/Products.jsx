@@ -71,11 +71,11 @@ const Products = () => {
   return (
     <main>
       <NavBar />
-      <section className="bg-white mt-5 ml-3 mr-3 shadow-md">
+      <section className="bg-white mt-25 ml-3 mr-3 shadow-md">
         <p className="p-4 lg:text-2xl text-xl font-bold">Best Of Electronics</p>
         <div className="lg:grid lg:grid-cols-3 gap-4 mt-5 grid grid-cols-1 md:grid md:grid-cols-2">
           {electronicitems &&
-            electronicitems.map((item) => (
+            electronicitems?.map((item) => (
               <div key={item._id} className="grid place-items-center mb-10">
                 <img
                   src={item.image || ""}
@@ -87,7 +87,7 @@ const Products = () => {
                 />
                 <p
                   className="lg:truncate lg:w-64 truncate w-44"
-                  title={item?.name || "No NAme Available"}
+                  title={item?.name || "No Name Available"}
                 >
                   {item.name}
                 </p>
@@ -101,40 +101,44 @@ const Products = () => {
           Best Deals On Smartphones
         </p>
         <div className="lg:grid lg:grid-cols-3 gap-4 mt-5 grid grid-cols-1 md:grid md:grid-cols-2">
-          {smartphoneitems.map((mobile) => (
-            <div key={mobile._id} className="grid place-items-center mb-10">
-              <img
-                src={mobile.image || ""}
-                alt="mobiles"
-                className="transition-transform duration-100 ease-in-out transform hover:scale-105 rounded-lg w-[150px] h-[250px] cursor-pointer mb-5"
-                onClick={() =>
-                  handleSeparateItemDetails("smartphone", mobile._id)
-                }
-              />
-              <p
-                className="truncate w-64"
-                title={mobile?.name || "No Name Available"}
-              >
-                {mobile.name}
-              </p>
-              <p className="text-xl font-bold">₹ {mobile.price}</p>
-            </div>
-          ))}
+          {smartphoneitems &&
+            smartphoneitems?.map((mobile) => (
+              <div key={mobile._id} className="grid place-items-center mb-10">
+                <img
+                  src={mobile.image || ""}
+                  alt="mobiles"
+                  className="transition-transform duration-100 ease-in-out transform hover:scale-105 rounded-lg w-[150px] h-[250px] cursor-pointer mb-5"
+                  onClick={() =>
+                    handleSeparateItemDetails("smartphone", mobile._id)
+                  }
+                />
+                <p
+                  className="truncate w-64"
+                  title={mobile?.name || "No Name Available"}
+                >
+                  {mobile.name}
+                </p>
+                <p className="text-xl font-bold">₹ {mobile.price}</p>
+              </div>
+            ))}
         </div>
       </section>
       <section className="bg-white mt-5 ml-3 mr-3 shadow-md mb-5">
         <p className="p-4 lg:text-2xl text-xl font-bold">Featured Brands</p>
         <div className="lg:grid lg:grid-cols-2 grid grid-cols-1 md:grid md:grid-cols-2">
-          {featureditems.map((brand) => (
-            <div className="grid place-items-center mb-10" key={brand._id}>
-              <img
-                src={brand.image || ""}
-                alt="featuredbrands"
-                className="cursor-pointer md:w-[300px] xl:w-[450px]"
-                onClick={() => handleSeparateItemDetails("featured", brand._id)}
-              />
-            </div>
-          ))}
+          {featureditems &&
+            featureditems?.map((brand) => (
+              <div className="grid place-items-center mb-10" key={brand._id}>
+                <img
+                  src={brand.image || ""}
+                  alt="featuredbrands"
+                  className="cursor-pointer md:w-[300px] xl:w-[450px]"
+                  onClick={() =>
+                    handleSeparateItemDetails("featured", brand._id)
+                  }
+                />
+              </div>
+            ))}
         </div>
       </section>
       <section>

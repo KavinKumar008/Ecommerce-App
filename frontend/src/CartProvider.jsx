@@ -7,6 +7,7 @@ const cartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const baseurl = import.meta.env.VITE_API_URL;
+  const [showCartItems, setShowCartItems] = useState([]);
 
   const addToCart = async (item) => {
     try {
@@ -35,10 +36,41 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const handlePlus = (e, itemId) => {
+    console.log(itemId, "itemiddddd");
+    e.preventDefault();
+    setShowCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item._id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const handleMinus = (e, itemId) => {
+    e.preventDefault();
+    setShowCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item._id === itemId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+
   // console.log(addToCart, "addtocart");
 
   return (
-    <cartContext.Provider value={{ cartItems, addToCart, setCartItems }}>
+    <cartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        setCartItems,
+        handlePlus,
+        handleMinus,
+        showCartItems,
+        setShowCartItems,
+      }}
+    >
       {children}
     </cartContext.Provider>
   );

@@ -11,36 +11,43 @@ import { MdCancel } from "react-icons/md";
 
 const CartPage = () => {
   const { category, id } = useParams();
-  const { cartItems, setCartItems } = useCart();
+  const {
+    cartItems,
+    setCartItems,
+    handlePlus,
+    handleMinus,
+    showCartItems,
+    setShowCartItems,
+  } = useCart();
   const [count, setCount] = useState(1);
-  const [showCartItems, setShowCartItems] = useState([]);
+  // const [showCartItems, setShowCartItems] = useState([]);
   const navigate = useNavigate();
   const baseurl = import.meta.env.VITE_API_URL;
   const { products } = useProducts();
 
   console.log(products, "procucts for cart page");
 
-  const handlePlus = (e, itemId) => {
-    console.log(itemId, "itemiddddd");
-    e.preventDefault();
-    setShowCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item._id === itemId ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  };
+  // const handlePlus = (e, itemId) => {
+  //   console.log(itemId, "itemiddddd");
+  //   e.preventDefault();
+  //   setShowCartItems((prevItems) =>
+  //     prevItems.map((item) =>
+  //       item._id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+  //     )
+  //   );
+  // };
   console.log(cartItems, "cartitems");
 
-  const handleMinus = (e, itemId) => {
-    e.preventDefault();
-    setShowCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item._id === itemId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
-  };
+  // const handleMinus = (e, itemId) => {
+  //   e.preventDefault();
+  //   setShowCartItems((prevItems) =>
+  //     prevItems.map((item) =>
+  //       item._id === itemId && item.quantity > 1
+  //         ? { ...item, quantity: item.quantity - 1 }
+  //         : item
+  //     )
+  //   );
+  // };
 
   const handleRemoveItem = async (itemId) => {
     try {
@@ -89,7 +96,7 @@ const CartPage = () => {
   return (
     <>
       <NavBar />
-      <div className="p-3">
+      <div className="p-3 mt-6">
         <h2 className="text-2xl font-bold mb-4 p-3">Your Cart Items</h2>
         {showCartItems.length === 0 ? (
           <p className="p-3">Your cart is empty.</p>

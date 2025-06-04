@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocation, Link } from "react-router-dom";
 import { useCart } from "../CartProvider";
 import { useProducts } from "../ProductProvider";
+import ProductCard from "../productcart/ProductCard";
 
 const NavBar = () => {
   const { cartItems } = useCart();
@@ -30,11 +31,11 @@ const NavBar = () => {
   //   navigate("/cartpage");
   // }
 
-  // const filteringProducts = products.filter((item) => {
-  //   item.name.toLowerCase().includes(searchTerm.toLocaleLowerCase());
-  // });
+  const filteringProducts = products.filter((item) => {
+    item.name.toLowerCase().includes(searchTerm.toLocaleLowerCase());
+  });
 
-  // console.log(filteringProducts, "filterrinefweifjiofj");
+  console.log(filteringProducts, "filterrinefweifjiofj");
 
   const cartCount = cartItems.reduce(
     (accu, currentValue) => accu + (currentValue.quantity || 1),
@@ -42,7 +43,7 @@ const NavBar = () => {
   );
   console.log(cartCount, "cartcount");
   return (
-    <div className="bg-white sticky top-0 z-10 shadow-md p-2 sm:w-full md:w-full lg:w-full">
+    <div className="bg-white fixed top-0 z-10 shadow-md p-2 w-full sm:w-full md:w-full lg:w-full">
       <section className="flex justify-around items-center lg:pl-7 lg:pr-9">
         <div>
           <img
@@ -56,7 +57,7 @@ const NavBar = () => {
           <input
             type="text"
             placeholder="Search for products and more"
-            className="pl-10 pr-3 py-3 w-[500px] outline-0 rounded-lg bg-[aliceblue]"
+            className="pl-10 pr-3 py-3 xl:w-[500px] lg:w-[430px] outline-0 rounded-lg bg-[aliceblue]"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -84,6 +85,15 @@ const NavBar = () => {
           />
         </div>
       </section>
+      {/* <div className="flex flex-wrap gap-4">
+        {filteringProducts.length > 0 ? (
+          filteringProducts.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))
+        ) : (
+          <p>No products found.</p>
+        )}
+      </div> */}
     </div>
   );
 };

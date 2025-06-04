@@ -4,10 +4,12 @@ import { useProducts } from "../ProductProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useCart } from "../CartProvider";
 
 const Payment = () => {
   const { category, id } = useParams();
   const { products } = useProducts();
+  const { showCartItems } = useCart();
   const [paymentDetails, setPaymentDetails] = useState({
     uName: "",
     uMobileNO: "",
@@ -30,6 +32,7 @@ const Payment = () => {
   console.log(baseurl);
 
   console.log(category, "paramssss", id);
+  console.log(showCartItems, "showcartitems");
 
   const validate = () => {
     let valid = true;

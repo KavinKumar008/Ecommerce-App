@@ -76,12 +76,12 @@ const ProductDetails = () => {
     <>
       <NavBar />
       {products.length === 0 || !product ? (
-        <p>Loading Product....</p>
+        <p className="p-5 text-xl font-bold">Loading Product....</p>
       ) : (
-        <>
+        <main className="mt-10">
           {product?.category === "electronic" && (
             <section className="p-8 flex lg:flex-row flex-col justify-around">
-              <div className="w-full lg:w-1/2 lg:p-5 sm:w-full sm:flex sm:flex-col">
+              <div className="w-full lg:w-1/2 lg:p-5 sm:w-full sm:flex sm:flex-col mt-10 xl:mt-0">
                 <div className="lg:flex lg:gap-8 lg:items-center md:flex md:items-center md:justify-center flex gap-8 items-center">
                   <div className="flex flex-col gap-10">
                     {product.changeImages &&
@@ -122,7 +122,7 @@ const ProductDetails = () => {
                   </button>
                 </div>
               </div>
-              <div className="lg:w-1/2 lg:p-5 sm:w-full">
+              <div className="lg:w-1/2 lg:p-5 xl:mt-5 sm:w-full">
                 <h2 className="text-xl mt-5 sm:text-sm md:text-lg lg:text-2xl font-medium mb-4">
                   {product.name}
                 </h2>
@@ -153,7 +153,7 @@ const ProductDetails = () => {
           )}
           {product?.category === "smartphone" && (
             <section className="lg:p-8 p-5 lg:flex justify-around">
-              <div className="lg:w-[50%] w-full lg:p-5">
+              <div className="lg:w-[50%] w-full lg:p-5 mt-10 xl:mt-0">
                 <div className="lg:flex lg:gap-8 lg:items-center md:flex md:items-center md:justify-center flex gap-8 items-center">
                   <div className="flex flex-col gap-10">
                     {product.changeImages &&
@@ -194,7 +194,7 @@ const ProductDetails = () => {
                   </button>
                 </div>
               </div>
-              <div className="lg:w-[50%] w-full lg:p-5">
+              <div className="lg:w-[50%] w-full lg:p-5 xl:mt-5">
                 <h2 className="lg:text-2xl text-xl mt-5 font-medium mb-4">
                   {product.name}
                 </h2>
@@ -225,7 +225,7 @@ const ProductDetails = () => {
           )}
           {product?.category === "featured" && (
             <section className="lg:p-8 p-5 lg:flex justify-around">
-              <div className="lg:w-[50%] lg:w-full lg:p-5">
+              <div className="lg:w-[50%] w-full lg:p-5 mt-10 xl:mt-0">
                 <div className="flex gap-8 items-center">
                   <div className="flex flex-col gap-10">
                     {product.changeImages &&
@@ -295,7 +295,7 @@ const ProductDetails = () => {
               </div>
             </section>
           )}
-        </>
+        </main>
       )}
     </>
   );
