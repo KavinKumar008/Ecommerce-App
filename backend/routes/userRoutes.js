@@ -99,14 +99,6 @@ router.post("/signup-Details", async (req, res) => {
       data: userWithoutPass,
       token: token,
     });
-
-    console.log(
-      res.status(200).json({
-        message: "User registered",
-        data: userWithoutPass,
-        token: token,
-      })
-    );
   } catch (error) {
     console.log("signupdetails are not saved");
     res.status(401).json({ "Error Saving the userdetails": error });

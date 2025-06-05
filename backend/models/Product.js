@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
   rating: Number,
   category: {
     type: String,
-    enum: ["electronic", "smartphone", "featured"],
+    enum: ["electronic", "smartphone", "featured", "slideimages"],
     required: true,
   },
 });
