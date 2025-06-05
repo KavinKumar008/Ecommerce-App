@@ -33,6 +33,21 @@ const Payment = () => {
 
   console.log(category, "paramssss", id);
   console.log(showCartItems, "showcartitems");
+  console.log(
+    showCartItems?.map((item) =>
+      item?._id === id ? item?.price * item?.quantity : ""
+    ),
+    "showcartitemsprice"
+  );
+
+  const matchedItem = showCartItems?.find(
+    (item) => item._id === id && item.category === category
+  );
+  const price = matchedItem ? matchedItem.price * matchedItem.quantity : 0;
+  console.log(price, "priceeeeeeeeeee");
+
+  const quantityX = matchedItem ? matchedItem.quantity : 1;
+  console.log(quantityX, "quantitxxxxxx");
 
   const validate = () => {
     let valid = true;
@@ -283,7 +298,7 @@ const Payment = () => {
                 type="text"
                 id="city"
                 name="uCity"
-                className={`lg:w-full w-full p-1 outline-0 border-1  rounded-md ${
+                className={`lg:w-32 xl:w-full md:w-full sm:w-full w-full p-1 outline-0 border-1  rounded-md ${
                   errors.uCity ? "border-red-500" : "border-gray-300"
                 }`}
                 value={paymentDetails.uCity || ""}
@@ -305,7 +320,7 @@ const Payment = () => {
                 type="text"
                 id="state"
                 name="uState"
-                className={`lg:w-full w-full p-1 outline-0 border-1  rounded-md ${
+                className={`lg:w-32 xl:w-full md:w-full sm:w-full w-full p-1 outline-0 border-1  rounded-md ${
                   errors.uState ? "border-red-500" : "border-gray-300"
                 }`}
                 value={paymentDetails.uState || ""}
@@ -327,7 +342,7 @@ const Payment = () => {
                 type="text"
                 id="pincode"
                 name="uPincode"
-                className={`lg:w-full w-full p-1 outline-0 border-1 rounded-md ${
+                className={`lg:w-32 xl:w-full md:w-full sm:w-full w-full p-1 outline-0 border-1 rounded-md ${
                   errors.uPincode ? "border-red-500" : "border-gray-300"
                 }`}
                 value={paymentDetails.uPincode || ""}
@@ -350,11 +365,14 @@ const Payment = () => {
         <p className="text-2xl font-bold">Your Ordered Item</p>
         <div className="mt-12 lg:h-[180px] xl:flex xl:gap-5 md:flex md:gap-10 h-auto p-4 rounded-md shadow-md">
           <div className="lg:flex lg:flex-col md:flex-col flex justify-around items-center">
-            <img
-              src={product?.image}
-              alt="image"
-              className="h-[100px] w-[130px] p-2"
-            />
+            <div className="xl:flex xl:items-center xl:justify-center xl:gap-4">
+              <img
+                src={product?.image}
+                alt="image"
+                className="h-[100px] w-[130px] p-2"
+              />
+              <p className="text-center">{quantityX ? quantityX : 1}X</p>
+            </div>
             <p
               className="p-2 truncate w-[400px] xl:w-[300px] font-semibold text-sm lg:w-[120px]"
               title={product?.name}
@@ -379,7 +397,7 @@ const Payment = () => {
               <div className="flex items-center justify-center gap-4">
                 <p className="font-bold text-lg">Total</p>
                 <p className="flex justify-center items-center ml-7 w-[150px] h-[40px] border border-gray-300">
-                  <span className="text-xl">{product?.price}</span>
+                  <span className="text-xl">{price || product?.price}</span>
                 </p>
               </div>
             </div>

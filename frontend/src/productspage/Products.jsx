@@ -3,6 +3,7 @@ import React, { useState } from "react";
 // import { ElectronicItem } from "./ElectronicItem";
 // import { SmartPhoneItem } from "./SmartPhoneItem";
 // import { FeaturedBrands } from "./FeaturedBrands";
+// import { SlideBrands } from "./SlideBrands";
 import Footer from "../footer/Footer";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../navbar/NavBar";
@@ -27,10 +28,11 @@ const Products = () => {
   // useEffect(() => {
   //   const sendProducts = async () => {
   //     try {
-  //       const dataWithCategory = FeaturedBrands.map((item) => ({
+  //       const dataWithCategory = SlideBrands.map((item) => ({
   //         ...item,
-  //         category: "featured",
+  //         category: "slideimages",
   //       }));
+  //       console.log(dataWithCategory, "data with category");
   //       await axios.post(`${baseurl}/products/add`, dataWithCategory);
   //       console.log("uploaded");
   //     } catch (error) {
@@ -68,9 +70,22 @@ const Products = () => {
   const featureditems = products.filter((item) => item.category === "featured");
   console.log(electronicitems);
 
+  const slideImageItems = products.filter(
+    (item) => item.category === "slideimages"
+  );
+
   return (
     <main>
       <NavBar />
+      <section className="bg-yellow-400 mt-25 ml-3 mr-3 shadow-md">
+        <p className="">SlideImages</p>
+        {slideImageItems &&
+          slideImageItems?.map((item) => (
+            <div key={item._id}>
+              <img src={item?.image} alt={item?.name} />
+            </div>
+          ))}
+      </section>
       <section className="bg-white mt-25 ml-3 mr-3 shadow-md">
         <p className="p-4 lg:text-2xl text-xl font-bold">Best Of Electronics</p>
         <div className="lg:grid lg:grid-cols-3 gap-4 mt-5 grid grid-cols-1 md:grid md:grid-cols-2">
