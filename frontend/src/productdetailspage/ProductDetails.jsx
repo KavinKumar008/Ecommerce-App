@@ -295,6 +295,78 @@ const ProductDetails = () => {
               </div>
             </section>
           )}
+          {product?.category === "slideimages" && (
+            <section className="lg:p-8 p-5 lg:flex justify-around">
+              <div className="lg:w-[50%] w-full lg:p-5 mt-10 xl:mt-0">
+                <div className="flex gap-8 items-center">
+                  <div className="flex flex-col gap-10">
+                    {product.changeImages &&
+                      product.changeImages.map((image, i) => (
+                        <div key={i}>
+                          <img
+                            src={image}
+                            alt="images"
+                            className="w-[100px] h-[70px] cursor-pointer"
+                            onClick={() => setSelectedImages(image)}
+                          />
+                        </div>
+                      ))}
+                  </div>
+                  <div>
+                    <img
+                      src={selectedImages}
+                      alt={product.name}
+                      className="lg:w-[500px] lg:h-[400px] h-[400px] w-[650px] lg:p-12 mb-4 border-[1px] border-[#f0f0f0]"
+                    />
+                  </div>
+                </div>
+                <div className="flex gap-3 mt-8">
+                  <button
+                    className="w-[60%] flex gap-3 items-center justify-center cursor-pointer bg-[#ff9f00] text-white p-3 rounded-sm outline-none"
+                    onClick={handleAddToCart}
+                  >
+                    <FaShoppingCart />
+                    <p>Add To Cart</p>
+                  </button>
+                  <button
+                    className="w-[60%] flex gap-3 items-center justify-center cursor-pointer bg-[#fb641b] text-white p-3 rounded-sm outline-none"
+                    onClick={() =>
+                      handleNavigatePayment(product?.category, product?._id)
+                    }
+                  >
+                    <AiFillThunderbolt /> Buy Now
+                  </button>
+                </div>
+              </div>
+              <div className="lg:w-[50%] w-full p-5">
+                <h2 className="text-lg mt-5 sm:text-sm md:text-lg lg:text-2xl font-bold mb-4">
+                  {product.name}
+                </h2>
+                <p className="bg-amber-600 w-[50px] flex gap-2 items-center justify-center text-white rounded-md">
+                  {product.rating}
+                  <FaStar className="text-white" />
+                </p>
+                <div className="text-xl font-bold mb-2 flex flex-col gap-3 mt-2">
+                  <div>
+                    <span className="text-[#fb641b] font-medium">
+                      Special Price
+                    </span>
+                  </div>
+                  <div className="flex gap-4">
+                    <p>₹ {product.price}</p>
+                    <p className="line-through decoration-cyan-700">
+                      {product.originalPrice}
+                    </p>
+                    <p className="text-[#fb641b]">{product.discount}</p>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 mt-3">
+                  <p className="font-bold text-xl">Description</p>
+                  <p className="text-gray-700">{product.description}</p>
+                </div>
+              </div>
+            </section>
+          )}
         </main>
       )}
     </>

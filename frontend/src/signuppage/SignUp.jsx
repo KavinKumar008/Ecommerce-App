@@ -100,8 +100,8 @@ const SignUp = () => {
   // };
 
   return (
-    <main className="flex justify-center items-center h-screen">
-      <section className="xl:w-[500px] xl:h-[530px] w-[450px] h-[530px] rounded-xl shadow-2xl">
+    <main className="flex justify-center items-center h-screen bg-gray-100">
+      <section className="xl:w-[500px] xl:h-[530px] w-[450px] h-[530px] rounded-xl shadow-xl">
         <section>
           <div>
             <h1 className="text-center text-3xl font-bold mt-5 underline">

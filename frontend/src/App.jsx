@@ -7,6 +7,7 @@ import ProductDetails from "./productdetailspage/ProductDetails";
 import Profile from "./profilepage/Profile";
 import { ToastContainer } from "react-toastify";
 import Payment from "./paymentpage/Payment";
+import ImageCarousel from "./imagecarousel/ImageCarousel";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/cartpage" element={<CartPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/payment/:category/:id" element={<Payment />} />
+        <Route path="/sliderimages/:category/:id" element={<ImageCarousel />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

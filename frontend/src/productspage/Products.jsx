@@ -10,6 +10,7 @@ import NavBar from "../navbar/NavBar";
 import { useEffect } from "react";
 import axios from "axios";
 import { useProducts } from "../ProductProvider";
+import ImageCarousel from "../imagecarousel/ImageCarousel";
 
 const Products = () => {
   // console.log(JSON.stringify(SmartPhoneItem, "itememememeem"));
@@ -75,18 +76,10 @@ const Products = () => {
   );
 
   return (
-    <main>
+    <main className="bg-gray-100">
       <NavBar />
-      <section className="bg-yellow-400 mt-25 ml-3 mr-3 shadow-md">
-        <p className="">SlideImages</p>
-        {slideImageItems &&
-          slideImageItems?.map((item) => (
-            <div key={item._id}>
-              <img src={item?.image} alt={item?.name} />
-            </div>
-          ))}
-      </section>
-      <section className="bg-white mt-25 ml-3 mr-3 shadow-md">
+      {slideImageItems.length > 0 && <ImageCarousel />}
+      <section className="bg-white mt-5 ml-3 mr-3 shadow-md">
         <p className="p-4 lg:text-2xl text-xl font-bold">Best Of Electronics</p>
         <div className="lg:grid lg:grid-cols-3 gap-4 mt-5 grid grid-cols-1 md:grid md:grid-cols-2">
           {electronicitems &&

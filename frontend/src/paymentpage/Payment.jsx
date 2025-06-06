@@ -127,11 +127,11 @@ const Payment = () => {
       return;
     }
     const { data: order } = await axios.post(`${baseurl}/create-order`, {
-      amount: product.price * 100,
+      amount: product.price * 100 || price * 100,
     });
     const options = {
       key: "rzp_test_bwMRDnSLV4R3vI",
-      amount: product.price,
+      amount: product.price || price,
       currency: "INR",
       name: "E-commerce Payment",
       description: "Payment for your order",

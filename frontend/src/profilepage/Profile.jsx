@@ -13,7 +13,7 @@ const Profile = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("googleToken");
     setProfileData(null);
-    // navigate("/");
+    navigate("/");
   };
 
   if (!profileData) {
