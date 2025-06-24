@@ -86,9 +86,7 @@ const NavBar = () => {
                     );
                   }}
                 >
-                  <p className="flex items-center justify-center rounded-md">
-                    {product.name}
-                  </p>
+                  {product.name}
                 </div>
               ))}
         </div>
