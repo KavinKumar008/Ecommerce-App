@@ -127,11 +127,11 @@ const Payment = () => {
       return;
     }
     const { data: order } = await axios.post(`${baseurl}/create-order`, {
-      amount: product.price * 100 || price * 100,
+      amount: product?.price * 100 || price * 100,
     });
     const options = {
       key: "rzp_test_bwMRDnSLV4R3vI",
-      amount: product.price || price,
+      amount: product?.price || price,
       currency: "INR",
       name: "E-commerce Payment",
       description: "Payment for your order",
@@ -214,7 +214,7 @@ const Payment = () => {
       uState: "",
       uPincode: "",
     });
-    // navigate("/products");
+    navigate(`/productdetails/${category}/${id}`);
   };
   return (
     <main className="lg:flex lg:h-screen">
