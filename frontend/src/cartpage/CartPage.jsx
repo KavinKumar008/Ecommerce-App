@@ -74,6 +74,7 @@ const CartPage = () => {
       try {
         const res = await axios.get(`${baseurl}/cart-details/getallcartitems`);
         if (res.status === 200) {
+          setCartItems(res.data.cartItems);
           setShowCartItems(res.data.cartItems);
           console.log(res.data.cartItems);
         }
