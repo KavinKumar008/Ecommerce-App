@@ -90,7 +90,11 @@ const ProductDetails = () => {
                           <img
                             src={image}
                             alt="images"
-                            className="w-[100px] h-[70px] cursor-pointer"
+                            className={`w-[100px] h-[70px] cursor-pointer ${
+                              selectedImages === image
+                                ? "border-2 border-blue-500 rounded-sm"
+                                : ""
+                            }`}
                             onClick={() => setSelectedImages(image)}
                           />
                         </div>
@@ -162,7 +166,11 @@ const ProductDetails = () => {
                           <img
                             src={image}
                             alt="images"
-                            className="lg:w-[100px] lg:h-[70px] w-[150px] h-[80px] cursor-pointer"
+                            className={`lg:w-[100px] lg:h-[70px] w-[150px] h-[80px] cursor-pointer ${
+                              selectedImages === image
+                                ? "border-2 border-blue-500 rounded-sm"
+                                : ""
+                            }`}
                             onClick={() => setSelectedImages(image)}
                           />
                         </div>
@@ -234,7 +242,11 @@ const ProductDetails = () => {
                           <img
                             src={image}
                             alt="images"
-                            className="w-[100px] h-[70px] cursor-pointer"
+                            className={`w-[100px] h-[70px] cursor-pointer ${
+                              selectedImages === image
+                                ? "border-2 border-blue-500 rounded-sm"
+                                : ""
+                            }`}
                             onClick={() => setSelectedImages(image)}
                           />
                         </div>
@@ -306,7 +318,11 @@ const ProductDetails = () => {
                           <img
                             src={image}
                             alt="images"
-                            className="w-[100px] h-[70px] cursor-pointer"
+                            className={`w-[100px] h-[70px] cursor-pointer ${
+                              selectedImages === image
+                                ? "border-2 border-blue-500 rounded-sm"
+                                : ""
+                            }`}
                             onClick={() => setSelectedImages(image)}
                           />
                         </div>
