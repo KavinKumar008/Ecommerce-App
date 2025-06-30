@@ -50,7 +50,7 @@ const AddnewProduct = () => {
           </section>
           <section className="flex flex-col justify-evenly w-[50%] p-4">
             <label htmlFor="" className="flex gap-5 items-center">
-              <span className="w-20 font-bold text-lg">Price</span>
+              <span className="w-20 font-bold lg:text-lg">Price</span>
               <input
                 type="text"
                 placeholder="enter your price"
@@ -58,7 +58,7 @@ const AddnewProduct = () => {
               />
             </label>
             <label htmlFor="" className="flex gap-5 items-center">
-              <span className="w-20 font-bold text-lg">Discount</span>
+              <span className="w-20 font-bold lg:text-lg">Discount</span>
               <input
                 type="text"
                 placeholder="enter your discount"
@@ -79,23 +79,23 @@ const AddnewProduct = () => {
                 <option value="">Featured</option>
               </select>
             </div>
-            <div className="flex gap-15 items-center">
-              <span className="w-20 font-bold text-lg">ChangeImages</span>
-              <div className="flex-1 flex gap-10">
+            <div className="xl:flex xl:gap-20 justify-evenly items-center flex gap-10">
+              <span className="w-20 font-bold lg:text-lg">ChangeImages</span>
+              <div className="flex-1 justify-evenly lg:flex lg:gap-10 flex">
                 <img
                   src=""
                   alt=""
-                  className="rounded-full bg-gray-700 w-[50px] h-[50px]"
+                  className="rounded-full border w-[50px] h-[50px]"
                 />
                 <img
                   src=""
                   alt=""
-                  className="rounded-full bg-gray-700 w-[50px] h-[50px]"
+                  className="rounded-full border w-[50px] h-[50px]"
                 />
                 <img
                   src=""
                   alt=""
-                  className="rounded-full bg-gray-700 w-[50px] h-[50px]"
+                  className="rounded-full border w-[50px] h-[50px]"
                 />
               </div>
             </div>
@@ -104,7 +104,7 @@ const AddnewProduct = () => {
         <div className="flex items-center justify-end pr-10 p-2">
           <button
             type="button"
-            className="cursor-pointer bg-green-600 p-2 w-[100px] text-white text-lg font-semibold rounded-lg"
+            className=" cursor-pointer bg-green-600 p-2 w-[100px] text-white text-lg font-semibold rounded-lg"
           >
             Add
           </button>
