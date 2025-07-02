@@ -1,5 +1,6 @@
 import React from "react";
 import cameraimg1 from "../assets/cameraimgviews/cameraimg1.jpeg";
+import { RiImageAddFill } from "react-icons/ri";
 
 const AddnewProduct = () => {
   const [addInputs, setAddInputs] = useState({
@@ -67,40 +68,78 @@ const AddnewProduct = () => {
                 value={addInputs.originalPrice}
                 placeholder="enter the original price"
                 className="flex-1 p-2 outline-none border border-gray-200 rounded-md"
+                onChange={(e) =>
+                  setAddInputs({
+                    ...addInputs,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               />
             </label>
             <label htmlFor="" className="flex gap-5 items-center">
-              <span className="w-20 text-lg font-bold">Rating</span>
+              <span className="w-20 lg:text-lg font-bold">Rating</span>
               <input
                 type="text"
+                name="rating"
+                value={addInputs.rating}
                 placeholder="enter the rating"
                 className="flex-1 p-2 outline-none border border-gray-200 rounded-md"
+                onChange={(e) =>
+                  setAddInputs({
+                    ...addInputs,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               />
             </label>
             <label htmlFor="" className="flex gap-5 items-center">
-              <span className="w-20 text-lg font-bold">Description</span>
+              <span className="w-20 lg:text-lg font-bold">Description</span>
               <textarea
                 rows={4}
                 cols={30}
+                name="description"
+                value={addInputs.description}
                 className="flex-1 outline-0 border border-gray-200 p-2"
+                onChange={(e) =>
+                  setAddInputs({
+                    ...addInputs,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               />
             </label>
           </section>
-          <section className="flex flex-col justify-evenly w-[50%] p-4">
+          <section className="flex flex-col lg:justify-evenly lg:w-[50%] w-full p-4 gap-4">
             <label htmlFor="" className="flex gap-5 items-center">
               <span className="w-20 font-bold lg:text-lg">Price</span>
               <input
                 type="text"
+                name="price"
+                value={addInputs.price || ""}
                 placeholder="enter your price"
                 className="flex-1 outline-none border border-gray-200 p-2 rounded-md"
+                onChange={(e) =>
+                  setAddInputs({
+                    ...addInputs,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               />
             </label>
             <label htmlFor="" className="flex gap-5 items-center">
               <span className="w-20 font-bold lg:text-lg">Discount</span>
               <input
                 type="text"
+                name="discount"
+                value={addInputs.discount || ""}
                 placeholder="enter your discount"
                 className="flex-1 outline-none border border-gray-200 p-2 rounded-md"
+                onChange={(e) =>
+                  setAddInputs({
+                    ...addInputs,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               />
             </label>
             <div className="flex items-center gap-5">
