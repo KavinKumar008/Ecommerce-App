@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import cameraimg1 from "../assets/cameraimgviews/cameraimg1.jpeg";
 import { RiImageAddFill } from "react-icons/ri";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddnewProduct = () => {
   const [addInputs, setAddInputs] = useState({
@@ -13,9 +15,11 @@ const AddnewProduct = () => {
     category: "",
     changeImages: [],
     image: "",
+    isNew: true,
   });
   const [image, setImage] = useState(null);
   const [changeImages, setChangeImages] = useState([]);
+  const baseurl = import.meta.env.VITE_API_URL;
 
   console.log(addInputs, "addinputsssssss");
 
@@ -31,20 +35,51 @@ const AddnewProduct = () => {
     setChangeImages(imageUrls);
     setAddInputs({ ...addInputs, changeImages: file });
   };
+
+  const handleAddNewProduct = async () => {
+    try {
+      const res = await axios.post(`${baseurl}/addNewProduct`, {
+        addInputs,
+      });
+
+      if (res.status === 200) {
+        toast.success("Successfully added New Product");
+        console.log(res);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Falied to Add New Product");
+    }
+  };
   return (
     <main className="bg-gray-200 h-screen flex items-center justify-center">
-      <section className="bg-white w-[950px] h-[550px] rounded-xl shadow-md flex flex-col">
-        <div className="flex items-center justify-center h-[25%]">
-          <img src="" className="rounded-full bg-red-300 w-[100px] h-[100px]" />
-          <label htmlFor="">
-            <input type="file" />
-            <RiImageAddFill />
-          </label>
+      <section className="bg-white w-screen h-screen xl:w-[950px] xl:h-[550px] lg:w-screen lg:h-screen md:w-screen md:h-screen sm:w-screen sm:h-screen lg:rounded-xl shadow-md flex flex-col overflow-y-auto lg:overflow-y-auto md:overflow-y-auto sm:overflow-y-auto">
+        <div className="flex items-center justify-center pt-4 lg:h-[25%] h-[15%]">
+          <div className="relative w-[100px] h-[100px]">
+            <img
+              src={image || ""}
+              alt=""
+              value={addInputs.image}
+              className="rounded-full w-full h-full object-cover shadow-md"
+            />
+            <label
+              htmlFor="productImage"
+              className="absolute left-3 top-16 xl:left-3 xl:top-15 lg:left-2 lg:top-15 md:left-3 md:top-15 -translate-x-1/2 text-sm rounded-md px-3 py-1 cursor-pointer"
+            >
+              <RiImageAddFill className="text-black text-2xl" />
+              <input
+                id="productImage"
+                type="file"
+                onChange={handleImageChange}
+                className="hidden"
+              />
+            </label>
+          </div>
         </div>
-        <div className="flex h-[75%]">
-          <section className="flex flex-col justify-evenly w-[50%] p-4">
+        <div className="lg:flex lg:h-[75%] h-[85%]">
+          <section className="flex flex-col lg:justify-evenly lg:w-[50%] w-full p-4 gap-4">
             <label htmlFor="" className="flex gap-5 items-center">
-              <span className="w-20 text-lg font-bold">Name</span>
+              <span className="w-20 lg:text-lg font-bold">Name</span>
               <input
                 type="text"
                 name="name"
@@ -60,7 +95,7 @@ const AddnewProduct = () => {
               />
             </label>
             <label htmlFor="" className="flex gap-5 items-center">
-              <span className="w-20 text-lg font-bold">Original Price</span>
+              <span className="w-20 lg:text-lg font-bold">Original Price</span>
 
               <input
                 type="text"
@@ -143,12 +178,16 @@ const AddnewProduct = () => {
               />
             </label>
             <div className="flex items-center gap-5">
-              <label htmlFor="" className="w-20 font-bold text-lg">
+              <label
+                htmlFor=""
+                className="lg:w-30 w-40 font-bold lg:text-lg text-[15px]"
+              >
                 Select your category
               </label>
               <select
-                name=""
+                name="category"
                 id=""
+                value={addInputs.category || ""}
                 className="flex-1 outline-none border border-gray-200 rounded-md p-3"
                 onChange={(e) =>
                   setAddInputs({
@@ -163,12 +202,12 @@ const AddnewProduct = () => {
                 <option value={"featured" || ""}>Featured</option>
               </select>
             </div>
-            <div className="xl:flex xl:gap-20 justify-evenly items-center flex gap-10">
+            {/* <div className="xl:flex xl:gap-20 justify-evenly items-center flex gap-10">
               <span className="w-20 font-bold lg:text-lg">ChangeImages</span>
               <div className="flex-1 justify-evenly lg:flex lg:gap-10 flex">
                 <img
                   src=""
-                  alt=""
+                  alt="changeImage"
                   className="rounded-full border w-[50px] h-[50px]"
                 />
                 <img
@@ -222,10 +261,11 @@ const AddnewProduct = () => {
             </div>
           </section>
         </div>
-        <div className="flex items-center justify-end pr-10 p-2">
+        <div className="flex items-center justify-end pr-10 p-2 mt-0 md:mt-20 sm:mt-20 lg:mt-0 xl:mt-0">
           <button
             type="button"
             className=" cursor-pointer bg-green-600 p-2 w-[100px] text-white text-lg font-semibold rounded-lg"
+            onClick={handleAddNewProduct}
           >
             Add
           </button>
