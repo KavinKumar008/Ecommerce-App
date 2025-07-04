@@ -15,7 +15,7 @@ const AddnewProduct = () => {
     category: "",
     changeImages: [],
     image: "",
-    isNew: true,
+    isNeww: true,
   });
   const [image, setImage] = useState(null);
   const [changeImages, setChangeImages] = useState([]);
