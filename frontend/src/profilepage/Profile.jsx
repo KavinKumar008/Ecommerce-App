@@ -62,7 +62,8 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="flex justify-end items-end mr-10 p-2">
+          <div className="flex justify-between items-end p-5">
+            <button className="cursor-pointer">Add New Product</button>
             <button
               onClick={handleLogout}
               className="cursor-pointer text-red-500 hover:underline"
