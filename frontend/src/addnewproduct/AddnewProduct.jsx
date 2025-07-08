@@ -37,9 +37,29 @@ const AddnewProduct = () => {
   };
 
   const handleAddNewProduct = async () => {
+    const formData = new FormData();
+
+    formData.append("name", addInputs.name);
+    formData.append("price", addInputs.price);
+    formData.append("originalPrice", addInputs.originalPrice);
+    formData.append("discount", addInputs.discount);
+    formData.append("rating", addInputs.rating);
+    formData.append("description", addInputs.description);
+    formData.append("category", addInputs.category);
+    formData.append("isNeww", addInputs.isNeww);
+
+    formData.append("image", addInputs.image);
+
+    addInputs.changeImages.forEach((imgFile) => {
+      formData.append("changeImages", imgFile);
+    });
+
+    console.log(formData, "formdatatatatat");
     try {
-      const res = await axios.post(`${baseurl}/addNewProduct`, {
-        addInputs,
+      const res = await axios.post(`${baseurl}/addNewProduct`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
 
       if (res.status === 200) {
