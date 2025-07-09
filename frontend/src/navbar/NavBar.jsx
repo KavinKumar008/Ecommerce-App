@@ -101,11 +101,9 @@ const NavBar = () => {
           {location.pathname !== "/cartpage" && (
             <Link to="/cartpage" className="relative">
               <FaShoppingCart className="text-2xl cursor-pointer" />
-              {cartCount > 0 && (
-                <span className="absolute top-2 right-2 bg-red-200 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
-                  {cartCount}
-                </span>
-              )}
+              <span className="absolute -top-2 -right-2 bg-red-200 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
+                {showCartItems && showCartItems?.length}
+              </span>
             </Link>
           )}
 
