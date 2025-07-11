@@ -8,6 +8,8 @@ import Profile from "./profilepage/Profile";
 import { ToastContainer } from "react-toastify";
 import Payment from "./paymentpage/Payment";
 import ImageCarousel from "./imagecarousel/ImageCarousel";
+// import AddnewProduct from "./addnewproduct/AddnewProduct";
+// import ShowNewProductPage from "./shownewproductpage/ShowNewProductPage";
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/payment/:category/:id" element={<Payment />} />
         <Route path="/sliderimages/:category/:id" element={<ImageCarousel />} />
+        {/* <Route path="/addnewproduct" element={<AddnewProduct />} />
+        <Route path="/shownewproductpage" element={<ShowNewProductPage />} /> */}
       </Routes>
       <ToastContainer />
     </BrowserRouter>
