@@ -18,14 +18,13 @@ export const ProductProvider = ({ children }) => {
         const res = await axios.get(`${baseurl}/getallProducts`);
         if (res.status === 200) {
           setProducts(res.data.getAllProducts);
-          console.log(res.data.getAllProducts);
+          console.log(res.data.getAllProducts, "skdhskdhsk");
         }
       } catch (error) {
         console.log(error);
       }
     };
-    // if (isLoggedIn) {
-    // }
+
     getAllProducts();
   }, []);
 

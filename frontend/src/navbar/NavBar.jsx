@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import brandlogo from "../assets/brandlogo.jpeg";
 import { FaHome, FaShoppingCart, FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
@@ -7,15 +7,25 @@ import { useCart } from "../CartProvider";
 import { useProducts } from "../ProductProvider";
 
 const NavBar = () => {
-  const { cartItems } = useCart();
+  const { cartItems, showCartItems } = useCart();
   const navigate = useNavigate();
   const { products, searchTerm, setSearchTerm } = useProducts();
   const location = useLocation();
+  // const [cartLength, setCartLength] = useState(showCartItems?.length);
+
+  // useEffect(() => {
+  //   const res = showCartItems?.length;
+  //   setCartLength(res);
+  // }, [cartItems]);
+
+  // console.log(cartLength, "asdkjnsdjkas");
 
   const cartCount = cartItems.reduce(
     (accu, currentValue) => accu + (currentValue.quantity || 1),
     0
   );
+
+  console.log(cartItems, showCartItems, "skdskdj", cartCount);
 
   const handleToHome = () => {
     navigate("/products");
